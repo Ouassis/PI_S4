@@ -8,8 +8,8 @@ import Footer from './Footer';
 import Icons from './Icons';
 import Navbar from './Navbar';
 import Review from './Review';
-/* import './App.css';
- */
+import './PageAccueil.css';
+ 
 function PageAccueil() {
   return (
     <div className="App">

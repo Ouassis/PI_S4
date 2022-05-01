@@ -8,7 +8,7 @@ function App() {
   return (
 
     <div className="App">
-       <Paperbase /> 
+       <PageAccueil /> 
     </div>
 
   );
