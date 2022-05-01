@@ -24,6 +24,8 @@ import Form1 from './Form1';
 import Form2 from './Form2';
 import Form3 from './Form3';
 
+
+
 function Formulaire() {
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -121,8 +123,8 @@ function Formulaire() {
 
   const [activeComponent, setActiveComponent] = useState("form1")
 
-/*   const [state, setState] = useState(forms);
- */
+  const [state, setState] = useState(forms);
+
   const scrollContainerStyle = { width: "800px", maxHeight: "400px" };
   return (
 
@@ -139,7 +141,7 @@ function Formulaire() {
             {
               <div id="Questions">
 
-                <FormsContext.Provider value={{forms, change }}>
+                <FormsContext.Provider value={{ state, setState }}>
                   {currentForm === 0 && <Form0 />}
                   {currentForm === 1 && <Form1 />}
                   {currentForm === 2 && <Form2 />}
@@ -152,10 +154,10 @@ function Formulaire() {
 
           </div>
           <Stack direction="row" spacing={73}>
-            <Button className='Previous' onClick={() => handlePrev() & console.log("forms d shit ", forms)} variant="outlined" startIcon={<ArrowBackIosNewIcon disabled={disablePrevButton} />}>
+            <Button className='Previous' onClick={() => handlePrev() & console.log("forms d shit ", state)} variant="outlined" startIcon={<ArrowBackIosNewIcon disabled={disablePrevButton} />}>
               Previous
             </Button>
-            <Button className='Next' onClick={() => handleNext() & console.log("forms d shit ", forms)} variant="contained" endIcon={<ArrowForwardIosIcon />} disabled={disableNextButton} >
+            <Button className='Next' onClick={() => handleNext() & console.log("forms d shit ", state)} variant="contained" endIcon={<ArrowForwardIosIcon />} disabled={disableNextButton} >
               Next
             </Button>
           </Stack>

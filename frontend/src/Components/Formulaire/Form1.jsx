@@ -6,26 +6,27 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { Box, Checkbox } from '@mui/material';
 import Button from '@mui/material/Button';
-
+import produce from "immer"
 function TestForm() {
 
-    const {forms, change} = useContext(FormsContext);
+    const {state, setState} = useContext(FormsContext);
+    
     return (
-        <div id="Questions">
-            <h6> {forms[1].title}</h6>
+        <div className="Questions">
+            <h6> {state[1].title}</h6>
             {
                 <Box>
                     <FormControl>
-                        {Object.entries(forms[1].questions).map(([_key, value]) =>
+                        {Object.entries(state[1].questions).map(([_key, value]) =>
                             <>
-                                <FormControlLabel key={_key} name={_key} control=
-                                    {<Checkbox
-                                        data-chkboxname={_key}
-                                        name={_key}
+                                <FormControlLabel key={_key}  control=
+                                    {<Checkbox     
                                         value={value}
-                                        defaultChecked={forms[1].questions[_key]}
-                                        onChange={() => change(_key, !forms[1].questions[_key],1) &
-                                             console.log(forms)}
+                                        defaultChecked={state[1].questions[_key]}
+                                        onChange={() => setState(currentAnswers => produce(currentAnswers,val => {
+                                            val[1].questions[_key] = !val[1].questions[_key]
+                                        }))
+                                             & console.log(state)}
                                     />}
                                     label={_key.replaceAll("_", " ")}
 
@@ -35,7 +36,7 @@ function TestForm() {
                     </FormControl>
                     <br />
                 </Box>            }
-            <Button variant="text" onClick={()=> console.log("forms : ", forms)} >Submit</Button>
+            <Button variant="text" onClick={()=> console.log("forms : ", state[1])} >Submit</Button>
         </div>
     )
 }
