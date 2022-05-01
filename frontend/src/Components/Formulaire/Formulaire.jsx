@@ -21,6 +21,8 @@ import { Box, Checkbox } from '@mui/material';
 import { FormsContext } from './Helpers/Context'
 import Form0 from './Form0';
 import Form1 from './Form1';
+import Form2 from './Form2';
+import Form3 from './Form3';
 
 function Formulaire() {
 
@@ -33,26 +35,8 @@ function Formulaire() {
   }));
 
   const [inputs, setInputs] = useState({});
-  const [questioncounter, setQuestioncounter] = useState(0)
 
-
-
-
-
-  const [isChecked, setIsChecked] = useState([])
-
-
-  const onCheckboxChange = ({ target: { checked, dataset: { chkboxname } } }) => {
-    setIsChecked({
-      ...isChecked,
-      [chkboxname]: checked
-    })
-  }
-
-
-
-
-  const forms = [
+  var forms = [
     {
       title: 'Form0',
       questions: {
@@ -93,7 +77,6 @@ function Formulaire() {
     console.log(inputs);
   }
 
-  const [checkedState, setCheckedState] = useState([].fill(false));
 
   function change(key, value, numform) {
     forms[numform].questions[key] = value;
@@ -137,10 +120,9 @@ function Formulaire() {
   }
 
   const [activeComponent, setActiveComponent] = useState("form1")
-  const [check, setCheck] = useState(false)
 
-  const [state, setState] = useState(forms[1]);
-
+/*   const [state, setState] = useState(forms);
+ */
   const scrollContainerStyle = { width: "800px", maxHeight: "400px" };
   return (
 
@@ -157,10 +139,11 @@ function Formulaire() {
             {
               <div id="Questions">
 
-                <FormsContext.Provider value={{ state, setState}}>
+                <FormsContext.Provider value={{forms, change }}>
                   {currentForm === 0 && <Form0 />}
-                  {currentForm === 1 && <Form1 dic={forms[1]} />}
-
+                  {currentForm === 1 && <Form1 />}
+                  {currentForm === 2 && <Form2 />}
+                  {currentForm === 3 && <Form3 />}
                 </FormsContext.Provider>
 
               </div>
@@ -169,10 +152,10 @@ function Formulaire() {
 
           </div>
           <Stack direction="row" spacing={73}>
-            <Button className='Previous' onClick={() => handlePrev()} variant="outlined" startIcon={<ArrowBackIosNewIcon disabled={disablePrevButton} />}>
+            <Button className='Previous' onClick={() => handlePrev() & console.log("forms d shit ", forms)} variant="outlined" startIcon={<ArrowBackIosNewIcon disabled={disablePrevButton} />}>
               Previous
             </Button>
-            <Button className='Next' onClick={() => handleNext()} variant="contained" endIcon={<ArrowForwardIosIcon />} disabled={disableNextButton} >
+            <Button className='Next' onClick={() => handleNext() & console.log("forms d shit ", forms)} variant="contained" endIcon={<ArrowForwardIosIcon />} disabled={disableNextButton} >
               Next
             </Button>
           </Stack>

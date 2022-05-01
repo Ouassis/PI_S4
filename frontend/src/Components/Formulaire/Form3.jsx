@@ -12,19 +12,19 @@ function TestForm() {
     const {forms, change} = useContext(FormsContext);
     return (
         <div id="Questions">
-            <h6> {forms[0].title}</h6>
+            <h6> {forms[3].title}</h6>
             {
                 <Box>
                     <FormControl>
-                        {Object.entries(forms[0].questions).map(([_key, value]) =>
+                        {Object.entries(forms[3].questions).map(([_key, value]) =>
                             <>
                                 <FormControlLabel key={_key} name={_key} control=
                                     {<Checkbox
                                         data-chkboxname={_key}
                                         name={_key}
                                         value={value}
-                                        defaultChecked={forms[0].questions[_key]}
-                                        onChange={() => change(_key, !forms[0].questions[_key],1) &
+                                        defaultChecked={forms[3].questions[_key]}
+                                        onChange={() => change(_key, !forms[3].questions[_key],1) &
                                              console.log(forms)}
                                     />}
                                     label={_key.replaceAll("_", " ")}
