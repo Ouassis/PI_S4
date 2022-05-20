@@ -5,16 +5,16 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
 
-const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad','Joints pain'];
+const steps = ['Form1', 'Form2', 'Form3','Form4'];
 
-export default function HorizontalStepperWithError() {
+export default function HorizontalStepperWithError({actvStep,fldStep}) {
   const isStepFailed = (step) => {
-    return step === 1;
+    return step === fldStep ;
   };
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={1}>
+      <Stepper activeStep={actvStep}>
         {steps.map((label, index) => {
           const labelProps = {};
           if (isStepFailed(index)) {
